@@ -1,5 +1,9 @@
 // utils/roles.js
 module.exports = {
-  CUSTOMER: 'customer',
-  ADMIN: 'admin',
+  ADMIN: 'Admin',
+  PROCENGINEER : 'Proc Engineer',
+  ENGINEER : 'Engineer',
+  STECH : 'S Technician',
+  TECH : 'Technician',
+  OPERATOR : 'Operator',
 };

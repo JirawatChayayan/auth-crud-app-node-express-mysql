@@ -6,10 +6,10 @@ var logger = require('morgan');
 require('dotenv').config();
 
 const authRoutes = require('././app/routes/authRoutes');
-const customerRoutes = require('././app/routes/customerRoutes');
-const productRoutes = require('././app/routes/productRoutes');
-const userRoutes = require('././app/routes/userRoutes');
 const indexRouter = require('./app/routes/index');
+const uphRoutes = require('././app/routes/uphRoutes');
+const mcInfoRoutes = require('./app/routes/mcInfoRoutes');
+const monitorRoute = require('././app/routes/monitorRoute');
 
 const app = express();
 
@@ -25,10 +25,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/customers', customerRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/users', userRoutes);
 app.use('/', indexRouter);
+app.use('/api/uph/download/mc',uphRoutes.routerMcUPHDownload)
+app.use('/api/uph/download/bom',uphRoutes.routerUPHByBomDownload)
+app.use('/api/uph/download/pkg',uphRoutes.routerUPHByPkgDownload)
+
+app.use('/api/uph/mc',uphRoutes.routerMcUPH);
+app.use('/api/uph/bom',uphRoutes.routerUPHByBom);
+app.use('/api/uph/pkg',uphRoutes.routerUPHByPkg);
+
+app.use('/api/mcinfo',mcInfoRoutes);
+
+app.use('/api/monitor',monitorRoute);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
